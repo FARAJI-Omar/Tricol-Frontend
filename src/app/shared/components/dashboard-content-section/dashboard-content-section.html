@@ -1,0 +1,12 @@
+<div class="p-4 w-[40%]">
+  <div class="mb-4">
+    <h2 class="text-2xl font-bold m-0 font-['Poppins']">{{ title }}</h2>
+    @if (description) {
+    <p class="pt-5 text-[rgb(133,134,136)] text-[15px] font-['Poppins']">{{ description }}</p>
+    }
+  </div>
+
+  <div class="mt-4">
+    <ng-content></ng-content>
+  </div>
+</div>
