@@ -1,0 +1,72 @@
+<nav
+  class="w-[250px] min-h-screen bg-[#f8f9fa] py-6 relative flex flex-col border-r border-[#dee0e3] transition-[width] duration-300 ease-in-out"
+  [class.!w-20]="isCollapsed"
+>
+  <!-- Toggle Button -->
+  <button
+    class="absolute top-4 -right-3 w-[26px] h-[26px] bg-white border-2 border-[#dadbde] rounded-full flex items-center justify-center cursor-pointer z-10 transition-all duration-300 ease-in-out p-0 hover:bg-[#f3f4f6] hover:scale-110"
+    (click)="toggleSidebar()"
+    type="button"
+  >
+    @if (!isCollapsed) {
+    <mat-icon class="text-base w-4 h-4 text-[#6b7280]">chevron_left</mat-icon>
+    } @else {
+    <mat-icon class="text-base w-4 h-4 text-[#6b7280]">chevron_right</mat-icon>
+    }
+  </button>
+
+  <!-- Menu Items -->
+  <ul class="list-none p-0 mt-8 m-0">
+    @for (item of menu; track item) {
+    <li
+      class="mb-2"
+      [class.!mt-[50%]]="item.separator"
+      [class.pt-4]="item.separator"
+      [class.border-t]="item.separator"
+      [class.border-[#d3d6db]]="item.separator"
+    >
+      @if (item.action) {
+      <a
+        (click)="handleItemClick(item)"
+        class="flex items-center gap-4 py-3.5 px-6 text-[#6b7280] no-underline font-medium text-[0.95rem] transition-all duration-200 ease-in-out relative cursor-pointer hover:bg-[#e5e7eb] hover:text-[#1f2937] hover:rounded-[10px]"
+        [class.!justify-center]="isCollapsed"
+        [class.!p-3.5]="isCollapsed"
+      >
+        <mat-icon class="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xl">{{
+          item.icon
+        }}</mat-icon>
+        @if (!isCollapsed) {
+        <span
+          class="whitespace-nowrap overflow-hidden transition-opacity duration-300 ease-in-out"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          >{{ item.label }}</span
+        >
+        }
+      </a>
+      } @else {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="!bg-[#dbeafe] !text-[#2563eb] !font-semibold !rounded-[10px] !border-l-[5px] !border-[#3b82f6]"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center gap-4 py-3.5 px-6 text-[#6b7280] no-underline font-medium text-[0.95rem] transition-all duration-200 ease-in-out relative hover:bg-[#e5e7eb] hover:text-[#1f2937] hover:rounded-[10px]"
+        [class.!justify-center]="isCollapsed"
+        [class.!p-3.5]="isCollapsed"
+      >
+        <mat-icon class="flex-shrink-0 w-6 h-6 flex items-center justify-center text-xl">{{
+          item.icon
+        }}</mat-icon>
+        @if (!isCollapsed) {
+        <span
+          class="whitespace-nowrap overflow-hidden transition-opacity duration-300 ease-in-out"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          >{{ item.label }}</span
+        >
+        }
+      </a>
+      }
+    </li>
+    }
+  </ul>
+</nav>
