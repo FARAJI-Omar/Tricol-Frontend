@@ -54,6 +54,26 @@ export class UserDataService {
     return userData ? userData.role : null;
   }
 
+  getPermissions(): string[] {
+    const userData = this.getUserData();
+    return userData ? userData.permissions : [];
+  }
+
+  hasPermission(permission: string): boolean {
+    const permissions = this.getPermissions();
+    return permissions.includes(permission);
+  }
+
+  hasAnyPermission(permissions: string[]): boolean {
+    const userPermissions = this.getPermissions();
+    return permissions.some(p => userPermissions.includes(p));
+  }
+
+  hasAllPermissions(permissions: string[]): boolean {
+    const userPermissions = this.getPermissions();
+    return permissions.every(p => userPermissions.includes(p));
+  }
+
   clearToken() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_data');
