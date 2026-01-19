@@ -13,7 +13,7 @@ export function getAdminSidebarMenu(): SidebarItem[] {
     },
     {
       label: 'Suppliers',
-      route: '/fournisseurs',
+      route: '/admin/suppliers',
       icon: 'local_shipping'
     },
     {
