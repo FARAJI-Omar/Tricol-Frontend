@@ -1,14 +1,15 @@
 import { Routes } from '@angular/router';
 import { roleGuard } from './core/guards/role.guard';
+import { Login, Register } from './auth';
 
 export const routes: Routes = [
     {
         path: 'login',
-        loadComponent: () => import('./auth/pages/login/login').then(m => m.Login)
+        component: Login
     },
     {
         path: 'register',
-        loadComponent: () => import('./auth/pages/register/register').then(m => m.Register)
+        component: Register
     },
 
     {
@@ -39,6 +40,10 @@ export const routes: Routes = [
               {
                 path: 'products',
                 loadComponent: () => import('./admin/products').then(m => m.Products)
+              },
+              {
+                path: 'orders',
+                loadComponent: () => import('./admin/orders').then(m => m.Orders)
               }
             ]
           },
