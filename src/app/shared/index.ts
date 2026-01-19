@@ -5,3 +5,4 @@ export * from './components/sidebar/sidebar';
 export * from './components/table/table';
 export * from './components/stats-card/stats-card';
 export * from './components/dashboard-content-section/dashboard-content-section';
+export * from './components/confirm-dialog/confirm-dialog';

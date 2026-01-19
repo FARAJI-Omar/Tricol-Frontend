@@ -1,0 +1,30 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+  <div class="flex justify-between items-center mb-6">
+    <app-dashboard-content-section
+      title="Supplier Management"
+      description="Manage all suppliers within the TRICOL system."
+    ></app-dashboard-content-section>
+
+    <button
+      (click)="openCreateDialog()"
+      class="px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors flex items-center gap-2 shadow-md cursor-pointer"
+    >
+      <mat-icon class="text-xl">add</mat-icon>
+      <span>Add Supplier</span>
+    </button>
+  </div>
+
+  @if (isLoading()) {
+  <div class="flex justify-center items-center py-12">
+    <div class="text-gray-500 text-lg">Loading suppliers...</div>
+  </div>
+  } @else {
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <div class="mb-4 text-sm text-gray-600">
+      Total Suppliers: <span class="font-semibold text-gray-900">{{ supplierCount() }}</span>
+    </div>
+
+    <app-table [columns]="columns" [data]="suppliers()" [actions]="actions"> </app-table>
+  </div>
+  }
+</div>
