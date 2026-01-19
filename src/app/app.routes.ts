@@ -53,8 +53,26 @@ export const routes: Routes = [
           },
           {
             path: 'responsableachats',
-            loadComponent: () => import('./dashboard/achats-dashboard/achats-dashboard').then(m => m.AchatsDashboard),
-            canActivate: [roleGuard(['RESPONSABLE_ACHATS'])]
+            loadComponent: () => import('./layout/achats-layout/achats-layout').then(m => m.AchatsLayout),
+            canActivate: [roleGuard(['RESPONSABLE_ACHATS'])],
+            children: [
+              {
+                path: '',
+                loadComponent: () => import('./dashboard/achats-dashboard/achats-dashboard').then(m => m.AchatsDashboard)
+              },
+              {
+                path: 'orders',
+                loadComponent: () => import('./admin/orders').then(m => m.Orders)
+              },
+              {
+                path: 'suppliers',
+                loadComponent: () => import('./admin/suppliers/suppliers/suppliers').then(m => m.Suppliers)
+              },
+              {
+                path: 'products',
+                loadComponent: () => import('./admin/products').then(m => m.Products)
+              }
+            ]
           },
           {
             path: 'magasinier',

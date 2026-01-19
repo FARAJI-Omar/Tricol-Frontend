@@ -1,1 +1,11 @@
-<p>achats-dashboard works!</p>
+<app-dashboard-content-section
+  title="Procurement Dashboard"
+  description="Welcome back {{ userName() }}, manage your procurement activities efficiently."
+>
+</app-dashboard-content-section>
+
+<app-stats-card [cards]="statsCards()"></app-stats-card>
+
+<div class="mt-6">
+  <app-graph></app-graph>
+</div>
