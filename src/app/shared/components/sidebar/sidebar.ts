@@ -26,4 +26,16 @@ export class Sidebar {
       item.action();
     }
   }
+
+  getActiveBgColor(item: SidebarItem): string {
+    return item.activeBgColor || '#dbeafe';
+  }
+
+  getActiveTextColor(item: SidebarItem): string {
+    return item.activeTextColor || '#2563eb';
+  }
+
+  getActiveBorderColor(item: SidebarItem): string {
+    return item.activeTextColor || '#3b82f6';
+  }
 }
