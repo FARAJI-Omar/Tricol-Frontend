@@ -10,6 +10,7 @@ import { Table, TableColumn, TableAction } from '../../../shared/components/tabl
 import { ConfirmDialog } from '../../../shared/components/confirm-dialog/confirm-dialog';
 import { CreateOrderDialog } from '../dialogs/create-order-dialog/create-order-dialog';
 import { OrderDetailsDialog } from '../dialogs/order-details-dialog/order-details-dialog';
+import { UserDataService } from '../../../core/services/user-data-service';
 
 @Component({
   selector: 'app-orders',
@@ -25,6 +26,7 @@ export class Orders implements OnInit {
   private orderService = inject(OrderService);
   private supplierService = inject(SupplierService);
   private dialog = inject(MatDialog);
+  private userDataService = inject(UserDataService);
 
   orders = signal<Order[]>([]);
   isLoading = signal(true);
@@ -104,7 +106,7 @@ export class Orders implements OnInit {
       textColor: '#FFFFFF',
       condition: (row: any) => {
         const order = this.orders().find(o => o.id === row.id);
-        return order?.status === 'validated';
+        return order?.status === 'validated' && this.userDataService.hasPermission('ORDER_RECEIVE');
       }
     },
     {
