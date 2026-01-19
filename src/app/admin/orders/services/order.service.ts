@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Order, CreateOrderRequest } from '../../../core/models/order.model';
 import { ApiService } from '../../../core/services/api.service';
 import { environment } from '../../../../env';
@@ -29,5 +29,11 @@ export class OrderService {
 
   receiveOrder(id: number): Observable<Order> {
     return this.http.post<Order>(`${this.baseUrl}/orders/${id}/receive`, {});
+  }
+
+  getPendingOrdersCount(): Observable<number> {
+    return this.getOrders().pipe(
+      map(orders => orders.filter(o => o.status === 'pending').length)
+    );
   }
 }

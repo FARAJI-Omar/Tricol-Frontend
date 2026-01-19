@@ -5,3 +5,12 @@
 </app-dashboard-content-section>
 
 <app-stats-card [cards]="statsCards()"></app-stats-card>
+
+<div class="flex gap-6 mt-6">
+  <div class="w-[65%]">
+    <app-graph></app-graph>
+  </div>
+  <div class="w-[35%]">
+    <app-low-stock-alerts></app-low-stock-alerts>
+  </div>
+</div>

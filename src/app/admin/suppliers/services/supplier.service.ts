@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
 import { Supplier } from '../../../core/models';
 
@@ -25,5 +25,9 @@ export class SupplierService {
 
   deleteSupplier(id: number): Observable<any> {
     return this.apiService.delete('/suppliers', id);
+  }
+
+  getSuppliersCount(): Observable<number> {
+    return this.getSuppliers().pipe(map(suppliers => suppliers.length));
   }
 }

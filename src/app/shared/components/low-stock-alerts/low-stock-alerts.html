@@ -1,0 +1,49 @@
+<div class="bg-white rounded-lg shadow p-6">
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-2">
+      <span class="material-icons text-red-500 bg-red-200 p-1 rounded-lg">warning</span>
+      <h3 class="text-lg font-semibold text-gray-900">Low Stock Alerts</h3>
+    </div>
+    <a routerLink="/admin/products" class="text-xs text-blue-600 hover:text-blue-800 font-medium">
+      View All Products
+    </a>
+  </div>
+
+  <!-- Table Header -->
+  <div class="flex items-center justify-between px-3 pb-3 border-b">
+    <div class="text-sm font-medium text-gray-600">Item</div>
+    <div class="text-sm font-medium text-gray-600">Stock</div>
+  </div>
+
+  <!-- Scrollable Content -->
+  <div class="max-h-100 overflow-y-auto">
+    <div class="space-y-3 pt-3">
+      @for (product of lowStockProducts(); track product.id) {
+        <div
+          class="flex items-center justify-between p-3 bg-gray-100 rounded-lg hover:bg-gray-100 transition"
+        >
+          <div class="flex items-center gap-3">
+            <span class="material-icons text-gray-400">inventory_2</span>
+            <div>
+              <div class="font-medium text-gray-900">{{ product.name }}</div>
+              <div class="text-sm text-gray-500">SKU-{{ product.reference }}</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="font-semibold text-gray-900">
+              {{ product.currentStock }} {{ product.measureUnit }}
+            </div>
+            <div class="text-sm text-gray-500">
+              Min: {{ product.reorderPoint }}{{ product.measureUnit }}
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="text-center py-6 text-gray-500">
+          <span class="material-icons text-4xl mb-2">check_circle</span>
+          <p>All products are well stocked</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

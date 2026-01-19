@@ -6,3 +6,5 @@ export * from './components/table/table';
 export * from './components/stats-card/stats-card';
 export * from './components/dashboard-content-section/dashboard-content-section';
 export * from './components/confirm-dialog/confirm-dialog';
+export * from './components/low-stock-alerts/low-stock-alerts';
+export * from './components/graph/graph';
