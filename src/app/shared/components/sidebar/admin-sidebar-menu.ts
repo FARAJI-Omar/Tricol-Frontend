@@ -23,7 +23,7 @@ export function getAdminSidebarMenu(): SidebarItem[] {
     },
     {
       label: 'Orders',
-      route: '/commandes',
+      route: '/admin/orders',
       icon: 'receipt_long'
     },
     {

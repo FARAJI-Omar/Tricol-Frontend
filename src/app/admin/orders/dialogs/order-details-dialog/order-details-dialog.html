@@ -1,0 +1,83 @@
+<div class="p-6">
+  <div class="mb-4">
+    <h2 class="text-2xl font-bold text-gray-900">Order Details</h2>
+    <p class="text-sm text-gray-500 mt-1">Order #{{ order.id }}</p>
+  </div>
+
+  <div class="space-y-4">
+    <div class="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Supplier</label>
+        <div class="text-sm font-semibold text-gray-900">
+          {{ order.supplierName || 'ID: ' + order.supplierId }}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Order Date</label>
+        <div class="text-sm font-semibold text-gray-900">
+          {{ order.orderDate | date : 'medium' }}
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Status</label>
+        <span
+          [class]="'px-2 py-1 rounded-full text-xs font-medium ' + getStatusClass(order.status)"
+        >
+          {{ order.status | uppercase }}
+        </span>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Amount</label>
+        <div class="text-sm font-semibold text-gray-900">
+          {{ order.totalAmount.toFixed(2) }} MAD
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t pt-4">
+      <h3 class="text-lg font-semibold text-gray-900 mb-3">Order Items</h3>
+      <div class="overflow-hidden border border-gray-200 rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                Product
+              </th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                Quantity
+              </th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                Unit Price
+              </th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            @for (item of order.items; track item.productId) {
+            <tr>
+              <td class="px-4 py-3 text-sm text-gray-900">{{ item.productName }}</td>
+              <td class="px-4 py-3 text-sm text-gray-900">{{ item.quantity }}</td>
+              <td class="px-4 py-3 text-sm text-gray-900">{{ item.unitPrice.toFixed(2) }} MAD</td>
+              <td class="px-4 py-3 text-sm font-semibold text-gray-900">
+                {{ item.total.toFixed(2) }} MAD
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end gap-3 mt-6 pt-4 border-t">
+    <button
+      (click)="onClose()"
+      class="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm font-medium transition-colors"
+    >
+      Close
+    </button>
+  </div>
+</div>
