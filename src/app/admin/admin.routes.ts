@@ -18,6 +18,10 @@ export const ADMIN_ROUTES: Routes = [
       {
         path: 'suppliers',
         loadComponent: () => import('./suppliers/suppliers/suppliers').then(m => m.Suppliers)
+      },
+      {
+        path: 'products',
+        loadComponent: () => import('./products').then(m => m.Products)
       }
     ]
   }

@@ -17,14 +17,14 @@ export function getAdminSidebarMenu(): SidebarItem[] {
       icon: 'local_shipping'
     },
     {
+      label: 'Products',
+      route: '/admin/products',
+      icon: 'inventory_2'
+    },
+    {
       label: 'Orders',
       route: '/commandes',
       icon: 'receipt_long'
-    },
-    {
-      label: 'Products',
-      route: '/produits',
-      icon: 'checkroom'
     },
     {
       label: 'Users',
