@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProductService } from '../../../admin/products/services/product.service';
@@ -12,6 +12,7 @@ import { Product } from '../../../core/models';
 })
 export class LowStockAlerts implements OnInit {
   lowStockProducts = signal<Product[]>([]);
+  productsRoute = input<string>('/');
 
   constructor(private productService: ProductService) {}
 
