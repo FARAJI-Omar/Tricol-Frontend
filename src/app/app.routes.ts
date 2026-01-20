@@ -84,8 +84,26 @@ export const routes: Routes = [
           },
           {
             path: 'magasinier',
-            loadComponent: () => import('./dashboard/magasinier-dashboard/magasinier-dashboard').then(m => m.MagasinierDashboard),
-            canActivate: [roleGuard(['MAGASINIER'])]
+            loadComponent: () => import('./layout/magasinier-layout/magasinier-layout').then(m => m.MagasinierLayout),
+            canActivate: [roleGuard(['MAGASINIER'])],
+            children: [
+              {
+                path: '',
+                loadComponent: () => import('./dashboard/magasinier-dashboard/magasinier-dashboard').then(m => m.MagasinierDashboard)
+              },
+              {
+                path: 'products',
+                loadComponent: () => import('./admin/products').then(m => m.Products)
+              },
+              {
+                path: 'orders',
+                loadComponent: () => import('./admin/orders').then(m => m.Orders)
+              },
+              {
+                path: 'movements',
+                loadComponent: () => import('./shared/components/stock-movements/stock-movements').then(m => m.StockMovements)
+              }
+            ]
           },
           {
             path: 'chefatelier',

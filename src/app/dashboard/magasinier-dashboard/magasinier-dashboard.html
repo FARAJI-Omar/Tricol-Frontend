@@ -1,1 +1,11 @@
-<p>magasinier-dashboard works!</p>
+<app-dashboard-content-section
+  title="Storekeeper Dashboard"
+  description="Welcome back {{ userName() }}, manage inventory and track stock movements."
+>
+</app-dashboard-content-section>
+
+<app-stats-card [cards]="statsCards()"></app-stats-card>
+
+<div class="mt-6">
+  <app-low-stock-alerts [productsRoute]="'/magasinier/products'"></app-low-stock-alerts>
+</div>
