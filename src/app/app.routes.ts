@@ -44,6 +44,10 @@ export const routes: Routes = [
               {
                 path: 'orders',
                 loadComponent: () => import('./admin/orders').then(m => m.Orders)
+              },
+              {
+                path: 'movements',
+                loadComponent: () => import('./shared/components/stock-movements/stock-movements').then(m => m.StockMovements)
               }
             ]
           },
@@ -71,6 +75,10 @@ export const routes: Routes = [
               {
                 path: 'products',
                 loadComponent: () => import('./admin/products').then(m => m.Products)
+              },
+              {
+                path: 'movements',
+                loadComponent: () => import('./shared/components/stock-movements/stock-movements').then(m => m.StockMovements)
               }
             ]
           },
