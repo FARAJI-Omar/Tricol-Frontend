@@ -27,6 +27,11 @@ export function getAdminSidebarMenu(): SidebarItem[] {
       icon: 'receipt_long'
     },
     {
+      label: 'Stock Movements',
+      route: '/admin/movements',
+      icon: 'swap_horiz'
+    },
+    {
       label: 'Users',
       route: '/admin/users',
       icon: 'people'
