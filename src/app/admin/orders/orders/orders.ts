@@ -91,7 +91,7 @@ export class Orders implements OnInit {
       textColor: '#FFFFFF',
       condition: (row: any) => {
         const order = this.orders().find(o => o.id === row.id);
-        return order?.status === 'pending';
+        return order?.status === 'pending' && this.userDataService.hasPermission('COMMANDE_VALIDATE');
       }
     },
     {
@@ -106,7 +106,7 @@ export class Orders implements OnInit {
       textColor: '#FFFFFF',
       condition: (row: any) => {
         const order = this.orders().find(o => o.id === row.id);
-        return order?.status === 'validated' && this.userDataService.hasPermission('ORDER_RECEIVE');
+        return order?.status === 'validated' && this.userDataService.hasPermission('COMMANDE_RECEIVE');
       }
     },
     {
@@ -121,10 +121,12 @@ export class Orders implements OnInit {
       textColor: '#FFFFFF',
       condition: (row: any) => {
         const order = this.orders().find(o => o.id === row.id);
-        return order?.status === 'pending';
+        return order?.status === 'pending' && this.userDataService.hasPermission('COMMANDE_CANCEL');
       }
     }
   ];
+
+  canCreateOrder = computed(() => this.userDataService.hasPermission('COMMANDE_CREATE'));
 
   ngOnInit(): void {
     this.loadOrders();
@@ -133,17 +135,31 @@ export class Orders implements OnInit {
   loadOrders(): void {
     this.isLoading.set(true);
     
-    forkJoin({
-      orders: this.orderService.getOrders(),
-      suppliers: this.supplierService.getSuppliers()
-    }).subscribe({
-      next: ({ orders, suppliers }) => {
-        const ordersWithSupplierNames = orders.map(order => ({
-          ...order,
-          supplierName: suppliers.find(s => s.id === order.supplierId)?.society || undefined
-        }));
-        this.orders.set(ordersWithSupplierNames);
-        this.isLoading.set(false);
+    this.orderService.getOrders().subscribe({
+      next: (orders) => {
+        // Only fetch suppliers if user has permission
+        if (this.userDataService.hasPermission('SUPPLIER_READ')) {
+          this.supplierService.getSuppliers().subscribe({
+            next: (suppliers) => {
+              const ordersWithSupplierNames = orders.map(order => ({
+                ...order,
+                supplierName: suppliers.find(s => s.id === order.supplierId)?.society || undefined
+              }));
+              this.orders.set(ordersWithSupplierNames);
+              this.isLoading.set(false);
+            },
+            error: (error) => {
+              console.error('Error loading suppliers:', error);
+              // Still show orders without supplier names
+              this.orders.set(orders);
+              this.isLoading.set(false);
+            }
+          });
+        } else {
+          // User doesn't have supplier read permission, just show orders
+          this.orders.set(orders);
+          this.isLoading.set(false);
+        }
       },
       error: (error) => {
         console.error('Error loading orders:', error);
