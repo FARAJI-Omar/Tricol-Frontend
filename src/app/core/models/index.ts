@@ -4,3 +4,4 @@ export * from './user.model';
 export * from './supplier.model';
 export * from './product.model';
 export * from './order.model';
+export * from './stock-movement.model';
