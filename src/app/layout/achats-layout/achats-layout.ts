@@ -46,6 +46,14 @@ function getAchatsSidebarMenu(): SidebarItem[] {
       activeTextColor: '#29a329'
     },
     {
+      label: 'Stock Movements',
+      route: '/responsableachats/movements',
+      icon: 'swap_horiz',
+      iconColor: '#5dd55d',
+      activeBgColor: '#adebad',
+      activeTextColor: '#29a329'
+    },
+    {
       label: 'Logout',
       icon: 'logout',
       separator: true,
