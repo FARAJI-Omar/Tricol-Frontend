@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 export interface TableColumn {
   key: string;
   label: string;
-  type?: 'text' | 'badge' | 'status' | 'avatar' | 'actions';
+  type?: 'text' | 'badge' | 'status' | 'avatar' | 'actions' | 'product-name' | 'stock';
   colorField?: string;
 }
 
