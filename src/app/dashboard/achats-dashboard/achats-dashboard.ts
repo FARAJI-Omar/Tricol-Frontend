@@ -42,7 +42,7 @@ export class AchatsDashboard implements OnInit {
         },
         {
             label: 'This Month Spending',
-            value: '0 MAD',
+            value: '0 DH',
             icon: 'payments',
             iconColor: '#8b5cf6',
             iconBgColor: '#ede9fe'
@@ -65,8 +65,23 @@ export class AchatsDashboard implements OnInit {
         this.orderService.getOrders().subscribe(orders => {
             const totalOrders = orders.length;
             const pendingOrders = orders.filter(o => o.status === 'pending').length;
+            
+            // Calculate this month spending
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            const thisMonthSpending = orders
+                .filter(order => {
+                    const orderDate = new Date(order.orderDate);
+                    return orderDate.getMonth() === currentMonth && 
+                           orderDate.getFullYear() === currentYear;
+                })
+                .reduce((sum, order) => sum + order.totalAmount, 0);
+            
             this.updateStat(0, totalOrders);
             this.updateStat(1, pendingOrders);
+            this.updateStat(3, `${thisMonthSpending.toLocaleString('fr-MA')} DH`);
         });
 
         this.supplierService.getSuppliersCount().subscribe(count => {
