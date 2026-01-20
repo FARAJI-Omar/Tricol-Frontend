@@ -1,15 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { Sidebar } from '../../shared/components/sidebar/sidebar';
 import { SidebarItem } from '../../shared/components/sidebar/sidebar-item';
+import { UserDataService } from '../../core/services/user-data-service';
 
 function getAchatsSidebarMenu(): SidebarItem[] {
-  const router = inject(Router);
+  const userDataService = inject(UserDataService);
 
   const logout = () => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    router.navigate(['/login']);
+    userDataService.logout();
   };
 
   return [
