@@ -48,6 +48,10 @@ export const routes: Routes = [
               {
                 path: 'movements',
                 loadComponent: () => import('./shared/components/stock-movements/stock-movements').then(m => m.StockMovements)
+              },
+              {
+                path: 'goodsout',
+                loadComponent: () => import('./atelier/goods-out/goods-out/goods-out').then(m => m.GoodsOutComponent)
               }
             ]
           },
@@ -107,8 +111,22 @@ export const routes: Routes = [
           },
           {
             path: 'chefatelier',
-            loadComponent: () => import('./dashboard/atelier-dashboard/atelier-dashboard').then(m => m.AtelierDashboard),
-            canActivate: [roleGuard(['CHEF_ATELIER'])]
+            loadComponent: () => import('./layout/atelier-layout/atelier-layout').then(m => m.AtelierLayout),
+            canActivate: [roleGuard(['CHEF_ATELIER'])],
+            children: [
+              {
+                path: '',
+                loadComponent: () => import('./dashboard/atelier-dashboard/atelier-dashboard').then(m => m.AtelierDashboard)
+              },
+              {
+                path: 'products',
+                loadComponent: () => import('./admin/products').then(m => m.Products)
+              },
+              {
+                path: 'goodsout',
+                loadComponent: () => import('./atelier/goods-out/goods-out/goods-out').then(m => m.GoodsOutComponent)
+              }
+            ]
           }
         ]
     },
