@@ -25,7 +25,7 @@ export const ADMIN_ROUTES: Routes = [
       },
       {
         path: 'goodsout',
-        loadComponent: () => import('../atelier/goods-out/goods-out/goods-out').then(m => m.GoodsOutComponent)
+        loadComponent: () => import('../shared/components/goods-out/goods-out').then(m => m.GoodsOutComponent)
       }
     ]
   }

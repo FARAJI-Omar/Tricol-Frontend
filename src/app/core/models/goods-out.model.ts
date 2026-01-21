@@ -1,3 +1,19 @@
+// Request types 
+export interface GoodsOutItemRequest {
+  productId: number;
+  quantity: number;
+  note?: string;
+}
+
+export interface CreateGoodsOutRequest {
+  exitDate: string | Date;
+  destinationWorkshop: string;
+  reason: 'PRODUCTION' | 'MAINTENANCE' | 'OTHER';
+  comment?: string;
+  items: GoodsOutItemRequest[];
+}
+
+// Response types 
 export interface GoodsOutItem {
   id?: number;
   productId: number;
