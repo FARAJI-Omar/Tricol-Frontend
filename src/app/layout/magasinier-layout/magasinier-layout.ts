@@ -45,6 +45,14 @@ function getMagasinierSidebarMenu(): SidebarItem[] {
       activeTextColor: '#d97706'
     },
     {
+      label: 'Goods-Out',
+      route: '/magasinier/goodsout',
+      icon: 'output',
+      iconColor: '#f59e0b',
+      activeBgColor: '#fde68a',
+      activeTextColor: '#d97706'
+    },
+    {
       label: 'Logout',
       route: '',
       icon: 'logout',

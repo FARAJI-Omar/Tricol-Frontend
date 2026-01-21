@@ -106,6 +106,10 @@ export const routes: Routes = [
               {
                 path: 'movements',
                 loadComponent: () => import('./shared/components/stock-movements/stock-movements').then(m => m.StockMovements)
+              },
+              {
+                path: 'goodsout',
+                loadComponent: () => import('./shared/components/goods-out/goods-out').then(m => m.GoodsOutComponent)
               }
             ]
           },
