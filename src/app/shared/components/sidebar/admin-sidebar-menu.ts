@@ -32,6 +32,11 @@ export function getAdminSidebarMenu(): SidebarItem[] {
       icon: 'swap_horiz'
     },
     {
+      label: 'Goods-Out',
+      route: '/admin/goodsout',
+      icon: 'output'
+    },
+    {
       label: 'Users',
       route: '/admin/users',
       icon: 'people'
