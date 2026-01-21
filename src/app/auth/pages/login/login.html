@@ -9,7 +9,8 @@
   <div class="relative z-10 w-full max-w-md mx-4">
     <div class="bg-white rounded-3xl shadow-xl p-8 border-t-2 border-l-2 border-r-2 border-b-2 border-t-red-500 border-l-red-500 border-r-yellow-400 border-b-yellow-400">
       <!-- Logo and Header -->
-      <div class="flex flex-col items-center mb-6">
+       <button routerLink="/" class="cursor-pointer">
+        <div class="flex flex-col items-center mb-6">
         <div class="flex items-center gap-2 mb-4">
           <div class="bg-primary rounded-lg p-2">
             <span class="material-symbols-outlined text-white text-[28px] bg-blue-500 p-1 rounded-md">styler</span>
@@ -21,6 +22,8 @@
           Please enter your username and password.
         </p>
       </div>
+    </button>
+      
 
       <!-- Login Form -->
       <form [formGroup]="loginForm" (ngSubmit)="submit()" class="space-y-4">
@@ -73,7 +76,7 @@
         </div>
 
         <!-- Remember Me Checkbox -->
-        <div class="flex items-center">
+        <!-- <div class="flex items-center">
           <input
             type="checkbox"
             formControlName="rememberMe"
@@ -83,7 +86,7 @@
           <label for="rememberMe" class="ml-2 text-sm font-medium text-gray-700 cursor-pointer">
             Remember me
           </label>
-        </div>
+        </div> -->
 
         <!-- Security Message -->
         <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start gap-2">
